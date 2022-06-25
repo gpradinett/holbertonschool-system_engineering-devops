@@ -3,7 +3,7 @@
 # Info para positional parameters: https://wiki.bash-hackers.org/scripting/posparams
 # Info ping command: https://linuxize.com/post/linux-ping-command/
 
-if [ $# == 1 ]
+if [ "$1" != "" ]
 then
 	ping -c 5 "$1" # la opcion -c indica cuantos paquetes traer con el ping command.
 else
