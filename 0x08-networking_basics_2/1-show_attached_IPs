@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Bash script that displays all active IPv4 IPs on the machine it’s executed on.
+# Info ifconfig: https://www.geeksforgeeks.org/ifconfig-command-in-linux-with-examples/
+# Se usa el comando "grep" para filtrar por --> inte (se pone un espacio tmb) para que no nos traiga otros datos que no
+# necesitamos ya que solo queremos las direcciones IP con la version 4.
+# Se usa el comando "cut" para traer la columna 10 que es la dir IP, tomar en cuenta que hay 9 espacios vacios al principio
+# antes de que aparezca: "inet"
+
+ifconfig | grep "inet " | cut -d ' ' -f 10

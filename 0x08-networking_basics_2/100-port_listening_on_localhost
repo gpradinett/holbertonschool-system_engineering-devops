@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Bash script that listens on port 98 on localhost
+# nc command info: https://www.thegeekstuff.com/2012/04/nc-command-examples/
+
+sudo nc -l 98
