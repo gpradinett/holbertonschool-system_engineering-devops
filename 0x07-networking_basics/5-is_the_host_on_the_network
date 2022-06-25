@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Bash script that pings an IP address passed as an argument, ping the IP only 5 times.
+# Info para positional parameters: https://wiki.bash-hackers.org/scripting/posparams
+# Info ping command: https://linuxize.com/post/linux-ping-command/
+
+if [ $# == 1 ]
+then
+	ping -c 5 "$1" # la opcion -c indica cuantos paquetes traer con el ping command.
+else
+	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+fi
