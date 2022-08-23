@@ -18,7 +18,9 @@ new_string2="server_name _;\n\n\terror_page 404 \/page_404.html;\n\tlocation \/p
 sed -i "s/server_name _;/$new_string2/" /etc/nginx/sites-available/default
 
 # Update Header - add_header
-sudo sed -i "/listen 80 default_server/a add_header X-Served-By '$HOSTNAME';" /etc/nginx/sites-enabled/default
+new_string3="a 404.\n\t\tadd_header X-Served-By $HOSTNAME;"
+
+sed -i "s/a 404./$new_string3/" /etc/nginx/sites-available/default
 # restart the server so that the changes are applied
 
 sudo service nginx restart
