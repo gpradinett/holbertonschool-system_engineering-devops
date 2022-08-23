@@ -14,8 +14,8 @@ frontend haproxy-main
     default_backend nginx_servers
 backend nginx_servers
     balance roundrobin
-    server 4390-web-01  54.160.195.20:80 check
-    server 4390-web-02  18.234.171.252:80 check
+    server 4333-web-01  54.160.195.20:80 check
+    server 4333-web-02  18.234.171.252:80 check
 "| sudo tee -a /etc/haproxy/haproxy.cfg
 
 # Restart haproxy load balancer
