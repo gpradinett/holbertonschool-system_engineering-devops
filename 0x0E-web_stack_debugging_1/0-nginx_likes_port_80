@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# s/regexp/replacement/flags
+# /g Replace the contents of the pattern space with the contents of the hold space.
+# The / characters may be uniformly replaced by any other single character within any given s command.
+# Info: https://www.computerhope.com/unix/used.htm
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
