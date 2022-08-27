@@ -5,7 +5,7 @@
 # Info Operators in Bash: https://linuxize.com/post/bash-if-else-statement/
 # Info functions in bash: https://tldp.org/LDP/abs/html/complexfunct.html
 
-domain_msg ()
+print_sub ()
 {
     # La opcion -A1 de "grep" es para agarrar la primer linea que matchee la busqueda y la opcion -F de "awk" es el delimitador
     # Con el "awk" printf $4 se toma la columna 4 que es el tipo de DNS record
@@ -18,15 +18,23 @@ domain_msg ()
 # Se imprime el texto que nos piden en la letra para cada subdominio y se llama a la funcion
 # que cree mas arriba (print_sub) pasandole como argumento el subdominio + punto + dominio
 
-if [ -z $2 ]
+if [ -z "$2" ]
 then
-	domain_msg "$1" "www"
-	domain_msg "$1" "lb-01"
-	domain_msg "$1" "web-01"
-	domain_msg "$1" "web-02"
+printf "The subdomain www "
+print_sub "www.$1"
+
+printf "The subdomain lb-01 "
+print_sub "lb-01.$1"
+
+printf "The subdomain web-01 "
+print_sub "web-01.$1"
+
+printf "The subdomain web-02 "
+print_sub "web-02.$1"
 
 # Si nos pasan "subdomain" y "domain" venimos a este else y llamamos a la funcion pasandole
 # primero el subdominio luego un punto y luego el dominio
 else
-	domain_msg "$1" "$2"
+    printf "The subdomain %s " "$2" # Printeamos lo que pasen como segundo argumento
+    print_sub "$2.$1"
 fi
