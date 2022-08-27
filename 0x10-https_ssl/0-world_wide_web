@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Configure your domain zone so that the subdomain www points to your load-balancer IP (lb-01). Let’s also add other subdomains to make our life easier, and write a Bash script that will display information about subdomains.
+# Info dig command: https://linube.com/ayuda/articulo/287/como-utilizar-el-comando-dig#:~:text=Dig%20es%20un%20comando%20que,y%20tambi%C3%A9n%20desde%20Mac%20OS.
+# Info awk command: https://geekland.eu/uso-del-comando-awk-en-linux-y-unix-con-ejemplos/
+# Info Operators in Bash: https://linuxize.com/post/bash-if-else-statement/
+# Info functions in bash: https://tldp.org/LDP/abs/html/complexfunct.html
+
+print_sub ()
+{
+    # La opcion -A1 de "grep" es para agarrar la primer linea que matchee la busqueda y la opcion -F de "awk" es el delimitador
+    # Con el "awk" printf $4 se toma la columna 4 que es el tipo de DNS record
+    printf "is a " ; dig "$1" | grep -A1 'ANSWER SECTION:' | awk -F' ' '{ printf $4 }'
+    # Se toma la columna 5 (separada por espacios) usando "awk" - es el numero de IP
+    printf " record and points to " ; dig "$1" | grep -A1 'ANSWER SECTION:' | awk -F' ' '{ printf $5 }'
+    echo ""
+}
+
+# Se imprime el texto que nos piden en la letra para cada subdominio y se llama a la funcion
+# que cree mas arriba (print_sub) pasandole como argumento el subdominio + punto + dominio
+
+if [ -z $2 ]
+then
+	domain_msg "$1" "www"
+	domain_msg "$1" "lb-01"
+	domain_msg "$1" "web-01"
+	domain_msg "$1" "web-02"
+
+# Si nos pasan "subdomain" y "domain" venimos a este else y llamamos a la funcion pasandole
+# primero el subdominio luego un punto y luego el dominio
+else
+	domain_msg "$1" "$2"
+fi
