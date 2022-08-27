@@ -5,7 +5,7 @@
 # Info Operators in Bash: https://linuxize.com/post/bash-if-else-statement/
 # Info functions in bash: https://tldp.org/LDP/abs/html/complexfunct.html
 
-print_sub ()
+domain_msg ()
 {
     # La opcion -A1 de "grep" es para agarrar la primer linea que matchee la busqueda y la opcion -F de "awk" es el delimitador
     # Con el "awk" printf $4 se toma la columna 4 que es el tipo de DNS record
