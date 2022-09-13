@@ -1,6 +1,17 @@
 #!/usr/bin/python3
 """
- exports json file with information about all employee progress
+Using what you did in the task #0, extend your Python script to export data in
+the JSON format.
+Requirements:
+- Records all tasks from all employees
+- Format must be: { "USER_ID": [ {"username": "USERNAME", "task": "TASK_TITLE"
+, "completed": TASK_COMPLETED_STATUS}, {"username": "USERNAME", "task":
+"TASK_TITLE", "completed": TASK_COMPLETED_STATUS}, ... ], "USER_ID":
+[ {"username": "USERNAME", "task": "TASK_TITLE", "completed": TASK_COMPLETED_
+STATUS}, {"username": "USERNAME", "task": "TASK_TITLE", "completed": TASK_
+COMPLETED_STATUS}, ... ]}
+- File name must be: todo_all_employees.json
+API que usamos: https://jsonplaceholder.typicode.com/
 """
 from collections import OrderedDict
 import json
