@@ -40,6 +40,10 @@ def top_ten(subreddit):
 
     # Se hace un for para imprimir cada uno de los 10 titulos que estan
     # en el top ten, dentro de cada children a "title" se accede atraves
-    # de "data"
-    for title in top_ten:
-        print(title['data']['title'])
+    # de "resq"
+
+    if resq.status_code == 404:
+        print("None")
+    else:
+        for result in resq.json().get("data").get("children"):
+            print("{}".format(result.get("data").get("title")))
