@@ -29,21 +29,11 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'My User Agent 1.0'}
 
     # Hacemos una request de la url indicada arriba con el metodo GET
-    resq = requests.get(url, headers=headers)
+    data = requests.get(url, headers=headers, allow_redirects=False)
 
-    # Pasar datos a JSON para obtener un diccionario de python y poder
-    # trabajar con los datos en python
-    json_res = resq.json()
-
-    # Traemos los top 10 de children
-    top_ten = json_res['data']['children']
-
-    # Se hace un for para imprimir cada uno de los 10 titulos que estan
-    # en el top ten, dentro de cada children a "title" se accede atraves
-    # de "resq"
-
-    if resq.status_code == 404:
+    if data.status_code == 404:
         print("None")
+
     else:
-        for result in resq.json().get("data").get("children"):
+        for result in data.json().get("data").get("children"):
             print("{}".format(result.get("data").get("title")))
